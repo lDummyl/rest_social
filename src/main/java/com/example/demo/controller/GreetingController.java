@@ -24,7 +24,7 @@ public class GreetingController {
         Greeting.greetingsPerformedQty = count.incrementAndGet();
         Visitor visitor = new Visitor(name);
         visitorService.saveVisitor(visitor);
-//        return new Greeting(count.get(), String.format(template, name));
         return new Greeting(visitor.getId(), String.format(template, name));
+
     }
 }

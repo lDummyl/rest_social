@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-
 import com.example.demo.exceptions.NotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +36,6 @@ public class MessageController {
                 .findFirst()
                 .orElseThrow(NotFoundException::new);
     }
-
     @PostMapping
     public Map<String, String> create (@RequestBody Map<String,String> message){
         message.put("id", String.valueOf(counter++));
