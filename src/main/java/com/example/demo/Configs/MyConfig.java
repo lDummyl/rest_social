@@ -22,11 +22,11 @@ public class MyConfig {
         barry.setName("Barrymore");
         return barry;
     }
-
     @Bean("Marika")
     public Secretary getSecretary(){
         return new Secretary();
     }
+
 
 
 

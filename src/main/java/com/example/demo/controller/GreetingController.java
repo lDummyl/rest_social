@@ -29,9 +29,10 @@ public class GreetingController {
     @GetMapping
     public Greeting sayHello(@RequestParam(value = "name", required = false, defaultValue = "mr. Incognito") String name) {
         Greeting.greetingsPerformedQty = count.incrementAndGet();
+        new Schedule().getPersonOnDuty();
         Visitor visitor = new Visitor(name);
         visitorService.saveVisitor(visitor);
-        Greeter gtr = Schedule.getPersonOnDuty();
+        Greeter gtr = new Schedule().getPersonOnDuty();
         greetingWay = gtr.getGreeting();
         return new Greeting(visitor.getId(), String.format(greetingWay, name));
     }
