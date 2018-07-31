@@ -32,7 +32,11 @@ public abstract class Pump extends Purchasable {
     public Pump(Price price) {
         price.setItem(this);
         this.price = price;
-
-
     }
+    public Pump(String ref){
+        reference = ref;
+    }
+    public Pump(){
+    }
+
 }
