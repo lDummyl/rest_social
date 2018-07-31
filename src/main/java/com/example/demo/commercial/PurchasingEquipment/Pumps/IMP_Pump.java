@@ -13,21 +13,30 @@ public class IMP_Pump /*extends Pump */ implements Hibernatable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "art")
     public String art;
+
     @Column(name = "refer")
     public String refer;
+
     @Column(name = "price_eur")
     public int price_eur;
+
     @Column(name = "dn")
     public int dn;
+
     @Column(name = "discount")
     public Double discount;
+
     @Column(name = "speed_3")
     public String speed_3;
+
     @Column(name = "speed_2")
     public String speed_2;
+
     public int getId() {return id;}
+
 //    @Override
 //    public Price getPrice() {
 //        return super.getPrice();

@@ -10,9 +10,9 @@ import javax.persistence.Column;
 public abstract class Pump extends Purchasable {
 
 
+    // TODO: 31.07.2018 arrange IMP_Pump with Pump relationship
     public String speed_2;
     public String speed_3;
-
     private int diameterN;
     private String manufactorer;
 

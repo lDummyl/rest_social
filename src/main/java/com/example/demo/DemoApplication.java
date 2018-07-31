@@ -32,27 +32,17 @@ public class DemoApplication {
 
 	public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(DemoApplication.class, args);
+
         System.out.println("Start!");
-//        System.out.println(new Dao().findAll(Visitor.class));
-        System.out.println(new Dao().findAll(IMP_Pump.class));
-
-        new Dao().save(new Visitor("Vova"));
-
-        new Dao().save(new IMP_Pump());
-
+//
+////        System.out.println(new Dao().findAll(Visitor.class));
+//        System.out.println(new Dao().findAll(IMP_Pump.class));
+//
+//        new Dao().save(new Visitor("Vova"));
+//        new Dao().save(new IMP_Pump());
 
 //        ClassPathXmlApplicationContext context =
 //                new ClassPathXmlApplicationContext("context.xml");
-
-
-
-//        List<Hibernatable> all = new PumpDao().findAll();
-//        for (Hibernatable hibernatable : all) {
-//            System.out.println(hibernatable);
-//        }
-
-
-
 
 
     }

@@ -10,5 +10,8 @@ import java.util.List;
 
 public class VisitorDao extends Dao{
 
+    public Visitor findById (int id) {
+        return (Visitor) HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Visitor.class, id);
+    }
 
 }

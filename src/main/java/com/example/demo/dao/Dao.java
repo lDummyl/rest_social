@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Dao {
 
+
     public void save(Hibernatable hib){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -34,7 +35,6 @@ public class Dao {
     }
 
     public static List<Hibernatable> findAll(Class cl) {
-
         List<Hibernatable> list;
 
         String query = "From ";
