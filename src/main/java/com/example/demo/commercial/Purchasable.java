@@ -1,14 +1,9 @@
 package com.example.demo.commercial;
 
-import com.example.demo.commercial.Currency;
-import sun.util.resources.ext.CurrencyNames_en_NZ;
-
-import javax.persistence.Column;
-
 
 public abstract class Purchasable {
 
-    protected Double deilveryMultiplier = 1.0;
+    protected Double deilveryMultiplier = 1.1;
 
     private Currency purchaseCurrency;
 

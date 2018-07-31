@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "visitors")
-public class Visitor {
+public class Visitor implements Hibernatable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
