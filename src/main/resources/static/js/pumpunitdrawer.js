@@ -1,3 +1,4 @@
+
 var cvs = document.getElementById("canvas");
 var ctx = cvs.getContext("2d");
 
@@ -25,5 +26,5 @@ function draw(){
     ctx.drawImage(image_to_draw, 0,0);
 }
 
+// start drawing when last image is loaded
 hsUnit.onload = draw;
-

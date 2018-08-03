@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Confuigurator!</title>
     <link rel="stylesheet" href="css/main.css">
+    <!--vue.js framework import links below-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 </head>
 <body>
 <!--The selection components-->
@@ -44,5 +47,9 @@
     </tbody></table>
 </td>
 </tbody></table>
+<!--Server relations-->
+<h3>Подобранная модель</h3>
+<div id="model_selector_app">{{message}}</div>
+<script src = "js/pump_model_selection.js"></script>
 </body>
 </html>

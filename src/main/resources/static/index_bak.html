@@ -1,48 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Confuigurator!</title>
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-    <!--The selection components-->
-    <table class="option-selections" width="100%" cellpadding="0" cellspacing="0" border="0"><tbody>
-    <h1>Подбор смесительных узлов</h1>
-    <p id = "introduction">Выберите конфигурацию в соответствии с параметрами вашей системы и необходимыми опциями </p>
-    <!--Unit type selection dropdown list-->
-    <select id="unit_type">
-        <option value="ts">Теплоснабжение</option>
-        <option value="hs">Холодоснабжение</option>
-        <!--<option value="os">Канализация</option>-->
-    </select>
-    <button id="calculate_btn" onclick=draw()>Осуществить подбор</button>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Confuigurator!</title>-->
+    <!--<link rel="stylesheet" href="css/main.css">-->
+<!--</head>-->
+<!--<body>-->
+    <!--&lt;!&ndash;The selection components&ndash;&gt;-->
+    <!--<table class="option-selections" width="100%" cellpadding="0" cellspacing="0" border="0"><tbody>-->
+    <!--<h1>Подбор смесительных узлов</h1>-->
+    <!--<p id = "introduction">Выберите конфигурацию в соответствии с параметрами вашей системы и необходимыми опциями </p>-->
+    <!--&lt;!&ndash;Unit type selection dropdown list&ndash;&gt;-->
+    <!--<select id="unit_type">-->
+        <!--<option value="ts">Теплоснабжение</option>-->
+        <!--<option value="hs">Холодоснабжение</option>-->
+        <!--&lt;!&ndash;<option value="os">Канализация</option>&ndash;&gt;-->
+    <!--</select>-->
+    <!--<button id="calculate_btn" onclick=draw()>Осуществить подбор</button>-->
 
-    <td>
-        <!--<tr>-->
-            <p><input type="number" size="3" name="num" min="0" max="30" value="1">
-                Расход, м3/ч</p>
+    <!--<td>-->
+        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+            <!--<p><input type="number" size="3" name="num" min="0" max="30" value="1">-->
+                <!--Расход, м3/ч</p>-->
 
-            <p><input type="number" size="3" name="num" min="0" max="20" value="1">
-                Напор, м</p>
-        <!--</tr>-->
-        <!--Options selection-->
-        <p>Кол-во комплектов КИП</p>
-        <p><input type="number" size="3" name="num" min="2" max="4" value="1"></p>
-        <p>Кол-во гибких подводок</p>
-        <p><input type="number" size="3" name="num" min="2" max="4" value="2"></p>
-        <p>Кол-во балансировочных вентилей</p>
-        <p><input type="number" size="3" name="num" min="2" max="4" value="1"></p>
-        <input type="checkbox" name="pres_rellay" value="a2">Реле давления<Br>
-    </td>
-    <!--The drawing container-->
-    <td>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody>
-        <p style="text-align: center">
-            <canvas id = "canvas" width="600" height="400"></canvas>
-            <script src = "js/pumpunitdrawer.js"></script>
-        </tbody></table>
-    </td>
-    </tbody></table>
-</body>
-</html>
+            <!--<p><input type="number" size="3" name="num" min="0" max="20" value="1">-->
+                <!--Напор, м</p>-->
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;Options selection&ndash;&gt;-->
+        <!--<p>Кол-во комплектов КИП</p>-->
+        <!--<p><input type="number" size="3" name="num" min="2" max="4" value="1"></p>-->
+        <!--<p>Кол-во гибких подводок</p>-->
+        <!--<p><input type="number" size="3" name="num" min="2" max="4" value="2"></p>-->
+        <!--<p>Кол-во балансировочных вентилей</p>-->
+        <!--<p><input type="number" size="3" name="num" min="2" max="4" value="1"></p>-->
+        <!--<input type="checkbox" name="pres_rellay" value="a2">Реле давления<Br>-->
+    <!--</td>-->
+    <!--&lt;!&ndash;The drawing container&ndash;&gt;-->
+    <!--<td>-->
+        <!--<table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody>-->
+        <!--<p style="text-align: center">-->
+            <!--<canvas id = "canvas" width="600" height="400"></canvas>-->
+            <!--<script src = "js/pumpunitdrawer.js"></script>-->
+        <!--</tbody></table>-->
+    <!--</td>-->
+    <!--</tbody></table>-->
+<!--</body>-->
+<!--</html>-->
