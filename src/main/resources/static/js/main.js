@@ -1,6 +1,25 @@
 
 var messageApi = Vue.resource('/message{/id}');
 
+Vue.component('message-form', {
+    data: function(){
+     return{
+         text: ''
+     }
+    },
+    template:
+    '<div>' +
+        '<input type="text" placeholder = "Type your new message" v-model="text"/>' +
+        '<input type="button" value = "Save" @click="save" />' +
+    '<div/>',
+    methods: {
+        click: function(){
+            var message = {text: }
+        }
+    }
+});
+
+
 Vue.component('message-row', {
     props: ['message'],
     template: '<div><i>({{message.id}})</i>{{ message.text }}</div>'

@@ -1,0 +1,25 @@
+
+/*h1{*/
+    /*background: limegreen;*/
+/*}*/
+/*#introduction{*/
+    /*background: limegreen;*/
+/*}*/
+/*body{*/
+    /*font-family: Verdana;*/
+    /*color: seagreen;*/
+/*}*/
+*{
+    font-family: Verdana;
+    color: seagreen;
+}
+
+:hover{
+    color: teal;
+    /*border: 1px solid black;*/
+
+}
+.option-selections{
+    margin:50px;
+    margin-top: 0px;
+}
