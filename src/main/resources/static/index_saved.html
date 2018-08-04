@@ -19,13 +19,20 @@
     <option value="hs">Холодоснабжение</option>
     <!--<option value="os">Канализация</option>-->
 </select>
-<!--<button id="calculate_btn" onclick=draw()>Осуществить подбор</button>-->
+<button id="calculate_btn" onclick=draw()>Осуществить подбор</button>
 <td>
     <!--<tr>-->
-    <p><input id = "flow" type="number" size="3" name="num" min="0" max="30" value="1">
+    <p><input type="number" size="3" name="num" min="0" max="30" value="1">
         Расход, м3/ч</p>
-    <p><input id = "preslose" type="number" size="3" name="num" min="0" max="20" value="1">
+    <p><input type="number" size="3" name="num" min="0" max="20" value="1">
         Напор, м</p>
+    <h4>Нач</h4>
+
+
+    <div id="server_data_input">{{message}}</div>
+
+
+    <h4>Конец</h4>
     <!--</tr>-->
     <!--Options selection-->
     <p>Кол-во комплектов КИП</p>
@@ -35,8 +42,6 @@
     <p>Кол-во балансировочных вентилей</p>
     <p><input type="number" size="3" name="num" min="2" max="4" value="1"></p>
     <input type="checkbox" name="pres_rellay" value="a2">Реле давления<Br>
-    <p></p>
-    <div id="data_input"></div>
 </td>
 <!--The drawing container-->
 <td>
@@ -52,9 +57,6 @@
 <h4>Результаты подбора</h4>
 <!--<div id="model_selector">{{message}}</div>-->
 <div id="model_selector"></div>
-
 <script src = "js/pump_model_selection.js"></script>
-<script src = "js/data_input.js"></script>
-
 </body>
 </html>
