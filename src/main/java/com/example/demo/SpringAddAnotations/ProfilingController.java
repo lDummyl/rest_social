@@ -1,4 +1,4 @@
-package com.example.demo.Quoter;
+package com.example.demo.SpringAddAnotations;
 
 public class ProfilingController implements  ProfilingControllerMBean{
     private boolean enabled=true;

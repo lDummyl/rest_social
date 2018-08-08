@@ -1,4 +1,4 @@
-package com.example.demo.Quoter;
+package com.example.demo.SpringAddAnotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

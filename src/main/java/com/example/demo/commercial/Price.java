@@ -1,11 +1,9 @@
 package com.example.demo.commercial;
 
 
-import java.text.DecimalFormat;
-
 public class Price {
 
-    private Purchasable item;
+    private Tradable item;
 
     public Currency purchaseCurrency;
 
@@ -15,11 +13,11 @@ public class Price {
 
     public double value;
 
-    public void setItem(Purchasable item) {
+    public void setItem(Tradable item) {
         this.item = item;
     }
 
-    public Price(Purchasable item, Currency purchaseCurrency, boolean isIncludesVAT, double value) {
+    public Price(Tradable item, Currency purchaseCurrency, boolean isIncludesVAT, double value) {
 
         this.item = item;
         this.purchaseCurrency = purchaseCurrency;
@@ -38,16 +36,16 @@ public class Price {
         double val = this.value;
 
         if (isIncludesVAT) {
-            val = (this.isIncludesVAT) ? val : val * (1+VAT.VALUE);
+            val = (this.isIncludesVAT) ? val : val * (1+ VAT.VALUE);
         } else{
-            val = (!this.isIncludesVAT) ? val : val / (1+VAT.VALUE);
+            val = (!this.isIncludesVAT) ? val : val / (1+ VAT.VALUE);
         }
 
-        if (isIncludesDelivery) {
-            val = (this.isIncludesDelivery) ? val : val * item.deilveryMultiplier;
-        }else {
-            val = (!this.isIncludesDelivery) ? val : val / item.deilveryMultiplier;
-        }
+//        if (isIncludesDelivery) {
+//            val = (this.isIncludesDelivery) ? val : val * item.deilveryMultiplier;
+//        }else {
+//            val = (!this.isIncludesDelivery) ? val : val / item.deilveryMultiplier;
+//        }
 
         val = val*(purchaseCurrency.multiplier/cur.multiplier);
 
