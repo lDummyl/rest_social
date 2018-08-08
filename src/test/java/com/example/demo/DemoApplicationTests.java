@@ -2,9 +2,7 @@ package com.example.demo;
 
 import com.example.demo.commercial.PurchasingEquipment.Pumps.IMP_Pump;
 import com.example.demo.dao.Dao;
-import com.example.demo.dao.VisitorDao;
 import com.example.demo.models.Hibernatable;
-import com.example.demo.models.Visitor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.SpringApplication;

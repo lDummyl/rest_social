@@ -12,13 +12,13 @@ import java.util.Map;
 @RequestMapping("pump-selection")
 public class PumpSelectionController {
 
-    private int counter = 4;
+    private int counter = 0;
     private String unitName;
     private List<Map<String, String>> messages = new ArrayList<Map<String, String>>(){{
 
-        add(new HashMap<String, String>(){{put ("id", "1"); put ("text", unitName); }});
-        add(new HashMap<String, String>(){{put ("id", "2"); put ("text", "arse"); }});
-        add(new HashMap<String, String>(){{put ("id", "3"); put ("text", "ssuka"); }});
+//        add(new HashMap<String, String>(){{put ("id", "1"); put ("text", "text0"); }});
+//        add(new HashMap<String, String>(){{put ("id", "2"); put ("text", "test1"); }});
+//        add(new HashMap<String, String>(){{put ("id", "3"); put ("text", "text3"); }});
 
     }};
 
@@ -45,13 +45,10 @@ public class PumpSelectionController {
     @PostMapping
     public Map<String, String> create (@RequestBody Map<String,String> message){
         message.put("id", String.valueOf(counter++));
-
-        for (Map.Entry<String, String> es : message.entrySet()) {
-            es.setValue(es.getValue()+" from server");
-        }
-
+        messages.clear();
         messages.add(message);
         System.out.println("we're in PostMapping");
+
         return message;
     }
     @PutMapping("{id}")
@@ -59,7 +56,7 @@ public class PumpSelectionController {
         Map<String, String> messageFromDb = getMessage(id);
         messageFromDb.putAll(message);
         messageFromDb.put("id",id);
-        System.out.println("we're in PutMapping");
+        System.out.println("we're in PutMapping-id");
         return messageFromDb;
     }
     @DeleteMapping("{id}")

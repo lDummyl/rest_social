@@ -8,11 +8,11 @@
     <!-- this ^ includes hidden Pack of PostProcessors-->
     <!--<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
 
-    <bean class="com.example.demo.Quoter.PostProxyInvokerContextListener"/>
-    <bean class="com.example.demo.Quoter.ProfilingHandlerBeanPostProcessor"/>
-    <bean class="com.example.demo.Quoter.InjectRandomIntBeanPostProcessor"/>
+    <bean class="com.example.demo.SpringAdditionalAnnotations.PostProxyInvokerContextListener"/>
+    <bean class="com.example.demo.SpringAdditionalAnnotations.ProfilingHandlerBeanPostProcessor"/>
+    <bean class="com.example.demo.SpringAdditionalAnnotations.InjectRandomIntBeanPostProcessor"/>
 
-    <bean class="com.example.demo.Quoter.TerminatorQuoter" id="terminatorQuoter">
+    <bean class="com.example.demo.SpringAdditionalAnnotations.TerminatorQuoter" id="terminatorQuoter">
         <property name="message" value="I'll be back"/>
     </bean>
 
