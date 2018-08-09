@@ -4,6 +4,8 @@ import com.example.demo.models.Hibernatable;
 import com.example.demo.utils.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import javax.persistence.Entity;
 import java.util.List;
 
 public class Dao {
@@ -33,13 +35,11 @@ public class Dao {
         session.close();
     }
 
-    public static List<Hibernatable> findAll(Class cl) {
-        List<Hibernatable> list;
-
+    public static List <? extends Hibernatable> findAll(Class<? extends Hibernatable> cl) {
+        List<? extends Hibernatable> list;
         String query = "From ";
         query = query.concat(cl.getSimpleName());
-
-        list = (List<Hibernatable>)  HibernateSessionFactoryUtil.getSessionFactory().openSession()
+        list = HibernateSessionFactoryUtil.getSessionFactory().openSession()
                 .createQuery(query).list();
         return list;
     }

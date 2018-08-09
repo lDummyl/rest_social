@@ -3,6 +3,8 @@ package com.example.demo.commercial;
 
 public abstract class Tradable {
 
+    enum kind {SELL,PURCHASE}
+
     private com.example.demo.commercial.Currency Currency;
 
     private Price price;

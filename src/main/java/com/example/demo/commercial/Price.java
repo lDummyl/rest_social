@@ -5,6 +5,8 @@ public class Price {
 
     private Tradable item;
 
+    public Tradable.kind kindOfPrice;
+
     public Currency purchaseCurrency;
 
     public boolean isIncludesVAT;
@@ -18,6 +20,9 @@ public class Price {
     }
 
     public Price(Tradable item, Currency purchaseCurrency, boolean isIncludesVAT, double value) {
+
+        if (Purchasable.class.isInstance(item)) kindOfPrice = Tradable.kind.PURCHASE;
+        if (Sellable.class.isInstance(item)) kindOfPrice = Tradable.kind.SELL;
 
         this.item = item;
         this.purchaseCurrency = purchaseCurrency;
