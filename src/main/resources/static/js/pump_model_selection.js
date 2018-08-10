@@ -12,11 +12,18 @@ Vue.component('message-form', {
     '</div>',
     methods: {
         save: function(){
-            var unit_type_selected = document.getElementById("unit_type").value.valueOf();
-            var unit_flow = document.getElementById("flow").value.valueOf();
-            var unit_preslose = document.getElementById("preslose").value.valueOf();
-            var result = unit_type_selected + unit_flow + unit_preslose;
-            var message = {text : result};
+            //todo send each field separately
+
+            var unit_type_selected = document.getElementById("unit_type").value.valueOf().toString();
+            var unit_flow = document.getElementById("flow").value.valueOf().toString();
+            var unit_preslose = document.getElementById("preslose").value.valueOf().toString();
+            var kipQty = document.getElementById("kipQty").value.valueOf().toString();
+            var flexQty = document.getElementById("flexQty").value.valueOf().toString();
+            var valvesQty = document.getElementById("valvesQty").value.valueOf().toString();
+            var isPresentRelay = document.getElementById("isPresentRelay").checked;
+
+            var message = {type : unit_type_selected, flow: unit_flow, presLose: unit_preslose,
+                kipQty: kipQty, flexQty: flexQty, valvesQty: valvesQty, isPresentRelay:isPresentRelay}
             model_selector.messages = [];
             messageApi.save({},message).then(result =>
                 result.json().then(data => {

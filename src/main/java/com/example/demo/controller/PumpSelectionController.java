@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.Selection.UnitSelect;
+import com.example.demo.commercial.OfferedEquipment.MixUnit;
 import com.example.demo.exceptions.NotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,11 +46,13 @@ public class PumpSelectionController {
     }
     @PostMapping
     public Map<String, String> create (@RequestBody Map<String,String> message){
+
+        String unitModelName = UnitSelect.getSelectedModel(message);
         message.put("id", String.valueOf(counter++));
+        message.put ("text", unitModelName);
         messages.clear();
         messages.add(message);
         System.out.println("we're in PostMapping");
-
         return message;
     }
     @PutMapping("{id}")

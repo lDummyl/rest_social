@@ -1,5 +1,6 @@
 package com.example.demo.commercial.OfferedEquipment;
 
+import com.example.demo.Selection.Calculations;
 import com.example.demo.commercial.Price;
 import com.example.demo.models.Hibernatable;
 
@@ -41,11 +42,17 @@ public class MixUnitTS extends MixUnit implements Hibernatable {
         return kvs;
     }
 
+    public String getSpeed_3() {
+        return speed_3;
+    }
+
     @Override
     public boolean isFits(double flow, double presLose) {
-
-        return false;
-
+        boolean isFits;
+        double valvePresLose =  Calculations.getPresLose(flow, kvs);
+        double summPresLose = valvePresLose + presLose;
+        isFits = Calculations.isPumpFits(flow, summPresLose, this);
+        return isFits;
     }
 
 }
