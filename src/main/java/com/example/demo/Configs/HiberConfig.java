@@ -3,7 +3,7 @@ package com.example.demo.Configs;
 
 import com.example.demo.commercial.OfferedEquipment.MixUnitHS;
 import com.example.demo.commercial.OfferedEquipment.MixUnitTS;
-import com.example.demo.commercial.PurchasingEquipment.Fittings.IMP_Pump;
+import com.example.demo.commercial.PurchasingEquipment.IMP_Pump;
 
 import java.util.ArrayList;
 

@@ -48,6 +48,7 @@ public class PumpSelectionController {
     public Map<String, String> create (@RequestBody Map<String,String> message){
 
         String unitModelName = UnitSelect.getSelectedModel(message);
+
         message.put("id", String.valueOf(counter++));
         message.put ("text", unitModelName);
         messages.clear();

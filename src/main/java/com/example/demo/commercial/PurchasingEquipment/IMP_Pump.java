@@ -1,4 +1,4 @@
-package com.example.demo.commercial.PurchasingEquipment.Fittings;
+package com.example.demo.commercial.PurchasingEquipment;
 
 import com.example.demo.commercial.Price;
 import com.example.demo.models.Hibernatable;
@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "pumps_imp")
-public class IMP_Pump /*extends Pump */ implements Hibernatable {
+public class IMP_Pump /*extends Pump */ implements Hibernatable, Orderable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

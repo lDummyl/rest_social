@@ -3,6 +3,7 @@ package com.example.demo.Selection;
 import com.example.demo.commercial.OfferedEquipment.MixUnit;
 import com.example.demo.commercial.OfferedEquipment.MixUnitHS;
 import com.example.demo.commercial.OfferedEquipment.MixUnitTS;
+import com.example.demo.constructor.UnitsConstructor;
 import com.example.demo.dao.Dao;
 import com.example.demo.models.Hibernatable;
 
@@ -12,7 +13,8 @@ import java.util.Map;
 
 public class UnitSelect {
 
-    List<?> unitsToCooseFrom =new ArrayList<>();
+    List<?> unitsToCooseFrom;
+
     MixUnit.type typeOfUnit;
 
     public static String getSelectedModel(Map<String,String> params){
@@ -29,15 +31,19 @@ public class UnitSelect {
         if (type.equals("hs"))unitType = MixUnit.type.HS;
         UnitSelect unitSelect = new UnitSelect(unitType);
 
-        String unitModel = unitSelect.getFitsUnit(flow,presLose);//main stuff
+        MixUnit selectedUnit = unitSelect.getFitsUnit(flow,presLose);//main stuff
 
-        StringBuilder unitFullModel = new StringBuilder(unitModel);
+        //pass the unit to form a specification;
+        new Thread(()-> {UnitsConstructor unitsConstructor = new UnitsConstructor(selectedUnit);}).start();
+
+        StringBuilder unitFullModel = new StringBuilder(selectedUnit.getBasic_name());
         if (kipQty>0)unitFullModel.append("-" + kipQty + "КИП");
         if (flexQty>0)unitFullModel.append("-" + flexQty + "ГП");
         if (valvesQty>0)unitFullModel.append("-" + valvesQty + "БВ");
         if (isPresentRelay)unitFullModel.append("-РД");
         return unitFullModel.toString();
     }
+
 
     public UnitSelect(MixUnit.type typeOfUnit) {
         this.typeOfUnit = typeOfUnit;
@@ -50,31 +56,31 @@ public class UnitSelect {
         }
         unitsToCooseFrom = Dao.findAll(cl);
     }
-    public String getFitsUnit(Double flow, Double presLose){
+    public MixUnit getFitsUnit(Double flow, Double presLose){
         // flow in m3/h and preslose in meters.
         if (typeOfUnit == MixUnit.type.TS) return getFitsTSUnit(flow,presLose);
         if (typeOfUnit == MixUnit.type.HS) return getFitsHSUnit(flow,presLose);
-        return "Not selected";
+        return null;
     }
 
-    private String getFitsHSUnit(Double flow, Double presLose){
+    private MixUnit getFitsHSUnit(Double flow, Double presLose){
         MixUnitHS selected;
         for (Object o : unitsToCooseFrom) {
             selected = (MixUnitHS)o;
             if (selected.isFits(flow, presLose)){
-                return selected.getBasic_name();
+                return selected;
             }
         }
-        return "not selected";
+        return null;
 
-    }private String getFitsTSUnit(Double flow, Double presLose){
+    }private MixUnit getFitsTSUnit(Double flow, Double presLose){
         MixUnitTS selected;
         for (Object o : unitsToCooseFrom) {
             selected = (MixUnitTS)o;
             if (selected.isFits(flow, presLose)){
-                return selected.getBasic_name();
+                return selected;
             }
         }
-        return "not selected";
+        return null;
     }
 }
