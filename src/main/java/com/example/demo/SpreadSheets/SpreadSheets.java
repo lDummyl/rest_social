@@ -1,6 +1,7 @@
 package com.example.demo.SpreadSheets;
 
 import com.example.demo.DemoApplication;
+import com.example.demo.constructor.SpecElement;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -19,11 +20,9 @@ import com.google.api.services.sheets.v4.model.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class SpreadSheets {
 
@@ -112,18 +111,29 @@ public class SpreadSheets {
 	}
 
 
-	public static void SheetInsert(String testString) throws Exception {
+	public static void specSheetInsert(Map<SpecElement, Integer> specElements, String unitFullName) {
 
-		List<Object> testLine = new ArrayList<Object>();
-		testLine.add(testString); //serial number including Hyperlink to the folder on GDrive, which contains the general data: offer, request, etc.
-		write(testLine); // write to it
+		List<List<Object>> testSpec = new ArrayList<List<Object>>();
+		testSpec.add(Arrays.asList(unitFullName));
 
+		for (Map.Entry<SpecElement, Integer> entry : specElements.entrySet()) {
+			ArrayList<Object> line = new ArrayList<>();
+			line.add(entry.getKey().getName());
+			line.add(entry.getValue());
+			testSpec.add(line);
+		}
+		try {
+			insertRow(1,testSpec.size()+1);
+			write(testSpec); // write to it
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+	public static void write(List<List<Object>> spec) throws Exception {
 
-	public static void write(List<Object> offerLine) throws Exception {
-
-		String range = "UnitSpecifications!A2:J2";
-		String valueInputOption = "USER_ENTERED"; 
+		int rowsQty = spec.size() + 1;
+		String range = String.format("UnitSpecifications!A2:%s%d", "B", rowsQty);
+		String valueInputOption = "USER_ENTERED";
 		ValueRange requestBody = new ValueRange();
 		Sheets sheetsService = getSheetsService();
 		Sheets.Spreadsheets.Values.Update request =
@@ -131,7 +141,7 @@ public class SpreadSheets {
 		request.setValueInputOption(valueInputOption);
 		@SuppressWarnings("unused")
 		UpdateValuesResponse response = request.execute();
-		List<List<Object>> values = Arrays.asList(offerLine);
+		List<List<Object>> values = spec;
 		ValueRange body = new ValueRange().setValues(values);
 		UpdateValuesResponse result =
 				sheetsService.spreadsheets().values().update(TestSheet.sheetId, range, body)
@@ -163,7 +173,7 @@ public class SpreadSheets {
 
 		// TODO: Change code below to process the `response` object:
 
-		Object obj = line; // ????? ???????? ???????? ???????
+		Object obj = line;
 		List<List<Object>> values = Arrays.asList(
 				Arrays.asList(obj)
 				);
@@ -180,23 +190,20 @@ public class SpreadSheets {
 	}
 
 
-	public static void insertRow(int index) throws Exception {
+	public static void insertRow(int startIndex, int rowsQty) throws Exception {
 
 		// sheetGid is located in the tail of journal's URL.
-
 		// The spreadsheet to apply the updates to.
 		//String TestSheet.sheetId = "1569DTiMnVkdFzTW_Rint8juaqVySuRoBsQ0kD5aty04"; // TODO: Update placeholder value.
 		// A list of updates to apply to the spreadsheet.
 		// Requests will be applied in the order they are specified.
 		// If any request is not valid, no requests will be applied.
 
-
 		InsertDimensionRequest insertDimensionRequest = new InsertDimensionRequest();
 		DimensionRange dimRange = new DimensionRange();
-		dimRange.setStartIndex(index);
-		dimRange.setEndIndex(index+1);
-		dimRange.setSheetId(Integer.parseInt(TestSheet.sheetId));
-
+		dimRange.setStartIndex(startIndex);
+		dimRange.setEndIndex(startIndex+rowsQty);
+		dimRange.setSheetId(Integer.parseInt(TestSheet.gId));
 		dimRange.setDimension("ROWS");
 		insertDimensionRequest.setRange(dimRange);
 

@@ -13,14 +13,17 @@ import java.util.Map;
 public class UnitsConstructor {
 
     MixUnit.type type;
+
     public UnitsConstructor(MixUnit mixUnit) {
         Class type = mixUnit.getClass();
+        Map<SpecElement, Integer> elements = null;
         if (type.equals(MixUnitTS.class)){
-            createListOfElements(mixUnit, new UnitModel(MixUnit.type.TS));
+            elements = createListOfElements(mixUnit, new UnitModel(MixUnit.type.TS));
         }
         if (type.equals(MixUnitHS.class)){
-            createListOfElements(mixUnit, new UnitModel(MixUnit.type.HS));
+            elements = createListOfElements(mixUnit, new UnitModel(MixUnit.type.HS));
         }
+        specificationOutput(elements, mixUnit);
     }
 
     private Map<SpecElement,Integer> createListOfElements(MixUnit unit, UnitModel model){
@@ -37,17 +40,11 @@ public class UnitsConstructor {
                 specElements.put(element, entry.getValue());
             }
         }
-
-
-        // TODO: 14.08.2018 convert spec elements.
-
-        try {
-            SpreadSheets.SheetInsert(specElements.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
         return specElements;
+    }
+    private void specificationOutput(Map<SpecElement, Integer> specElements, MixUnit mixUnit){
+
+        SpreadSheets.specSheetInsert(specElements, mixUnit.getFullName());
+
     }
 }

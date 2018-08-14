@@ -40,6 +40,7 @@ public class MixUnitHS extends MixUnit implements Hibernatable {
         return kvs;
     }
 
+
     @Override
     public boolean isFits(double flow, double presLose){
 

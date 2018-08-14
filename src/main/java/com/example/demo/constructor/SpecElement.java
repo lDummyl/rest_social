@@ -6,12 +6,22 @@ import com.example.demo.commercial.PurchasingEquipment.Suppliers.Supplier;
 public class SpecElement {
 
     String art;
+
     String name;
     double dnMain;
     double dnSecondary;
     double kvs;
     Supplier supplier;
     Manufactorer manufactorer;
+
+
+    public String getArt() {
+        return art;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public SpecElement() {
     }

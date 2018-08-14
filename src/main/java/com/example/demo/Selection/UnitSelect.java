@@ -33,15 +33,17 @@ public class UnitSelect {
 
         MixUnit selectedUnit = unitSelect.getFitsUnit(flow,presLose);//main stuff
 
-        //pass the unit to form a specification;
-        new Thread(()-> {UnitsConstructor unitsConstructor = new UnitsConstructor(selectedUnit);}).start();
-
         StringBuilder unitFullModel = new StringBuilder(selectedUnit.getBasic_name());
         if (kipQty>0)unitFullModel.append("-" + kipQty + "КИП");
         if (flexQty>0)unitFullModel.append("-" + flexQty + "ГП");
         if (valvesQty>0)unitFullModel.append("-" + valvesQty + "БВ");
         if (isPresentRelay)unitFullModel.append("-РД");
-        return unitFullModel.toString();
+        selectedUnit.setFullName(unitFullModel.toString());
+
+        //pass the unit to form a specification;
+        new Thread(()-> {UnitsConstructor unitsConstructor = new UnitsConstructor(selectedUnit);}).start();
+
+        return selectedUnit.getFullName();
     }
 
 
@@ -49,10 +51,10 @@ public class UnitSelect {
         this.typeOfUnit = typeOfUnit;
         Class<? extends Hibernatable> cl = null;
         if (typeOfUnit == MixUnit.type.HS){
-            cl =MixUnitHS.class;
+            cl = MixUnitHS.class;
         }
         if (typeOfUnit == MixUnit.type.TS){
-            cl =MixUnitTS.class;
+            cl = MixUnitTS.class;
         }
         unitsToCooseFrom = Dao.findAll(cl);
     }
