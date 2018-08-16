@@ -3,6 +3,7 @@ package com.example.demo.Configs;
 
 import com.example.demo.commercial.OfferedEquipment.MixUnitHS;
 import com.example.demo.commercial.OfferedEquipment.MixUnitTS;
+import com.example.demo.commercial.PurchasingEquipment.Fitting;
 import com.example.demo.commercial.PurchasingEquipment.IMP_Pump;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class HiberConfig {
         entitiesClassesList.add(MixUnitTS.class);
         entitiesClassesList.add(MixUnitHS.class);
         entitiesClassesList.add(IMP_Pump.class);
+        entitiesClassesList.add(Fitting.class);
 
         return entitiesClassesList;
     }

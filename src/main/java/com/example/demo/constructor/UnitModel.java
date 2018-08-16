@@ -1,15 +1,21 @@
 package com.example.demo.constructor;
 
 import com.example.demo.commercial.OfferedEquipment.MixUnit;
+import com.example.demo.commercial.PurchasingEquipment.Fitting;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class UnitModel {
+//    Model contains qty of main elements, required to build a unit
+//    it is constant to different unit types, and might be expanded
+//    in custom selection mode.
 
-    static Map<String, Integer> specMap = new HashMap<>();
 
-    // TODO: 14.08.2018 this is testing arrays will be replased by information from base ,or custom selection
+//    static Map<String, Integer> specMap = new HashMap<>(); //represents fitting essence and required qty.
+    static Map<String, Integer> specMap = new HashMap<>(); //represents fitting essence and required qty.
+
+    // TODO: 14.08.2018 this is testing arrays which will be replaced by information from base, or custom selection.
     final int[] tsMap = new int[]{3, 2, 1, 1, 1, 1, 2};
     final int[] hsMap = new int[]{1, 2, 1, 0, 0, 1, 1};
 
@@ -23,14 +29,11 @@ public class UnitModel {
     }
 
     private void fillMainElements(int[] arr) {
-        specMap.put("teeQty", arr[0]);
-        specMap.put("shutterValveQty", arr[1]);
-        specMap.put("filterQty", arr[2]);
-        specMap.put("returnValveQty", arr[3]);
-        specMap.put("AmericanConnectionQty", arr[4]);
-        specMap.put("nippleQty", arr[5]);
-        specMap.put("threadedPipeQty", arr[6]);
 
+        Fitting.essences[] essences = Fitting.essences.values();
+        for (int i = 0; i < essences.length; i++) {
+            specMap.put(essences[i].name(), arr[i]);
+        }
     }
 
     public Map<String, Integer> getSpecMap() {

@@ -4,11 +4,11 @@ import com.example.demo.SpreadSheets.SpreadSheets;
 import com.example.demo.commercial.OfferedEquipment.MixUnit;
 import com.example.demo.commercial.OfferedEquipment.MixUnitHS;
 import com.example.demo.commercial.OfferedEquipment.MixUnitTS;
+import com.example.demo.commercial.PurchasingEquipment.Fitting;
+import com.example.demo.dao.Dao;
+import com.example.demo.models.Hibernatable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UnitsConstructor {
 
@@ -17,6 +17,7 @@ public class UnitsConstructor {
     public UnitsConstructor(MixUnit mixUnit) {
         Class type = mixUnit.getClass();
         Map<SpecElement, Integer> elements = null;
+
         if (type.equals(MixUnitTS.class)){
             elements = createListOfElements(mixUnit, new UnitModel(MixUnit.type.TS));
         }
@@ -32,14 +33,29 @@ public class UnitsConstructor {
         Map<String, Integer> specMap = model.getSpecMap();
         Map<SpecElement, Integer> specElements = new HashMap<>();
 
+        List<? extends Hibernatable> allFittings = Dao.findAll(Fitting.class);
+
+
         for (Map.Entry<String, Integer> entry : specMap.entrySet()) {
             if (entry.getValue() != 0.){
                 SpecElement element = new SpecElement();
-                element.name = entry.getKey();
-                element.dnMain = mainDn;
+//                element.name = entry.getKey();
+//                element.dnMain = mainDn;
+                for (Hibernatable sample : allFittings) {
+                    Fitting fitting = (Fitting) sample;
+                    if (fitting.essence != null && fitting.essence.equals(entry.getKey()) && fitting.dn_main == unit.getDn()){
+                        StringJoiner joiner = new StringJoiner("_");
+                        joiner.add(fitting.ref).add(fitting.name);
+                        element.name = joiner.toString();
+                    }
+                }
                 specElements.put(element, entry.getValue());
             }
         }
+
+
+
+
         return specElements;
     }
     private void specificationOutput(Map<SpecElement, Integer> specElements, MixUnit mixUnit){

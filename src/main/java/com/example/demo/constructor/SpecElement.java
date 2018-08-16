@@ -6,7 +6,6 @@ import com.example.demo.commercial.PurchasingEquipment.Suppliers.Supplier;
 public class SpecElement {
 
     String art;
-
     String name;
     double dnMain;
     double dnSecondary;
